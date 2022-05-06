@@ -13,13 +13,13 @@
     <div id="app">
       <div class="product-img">
         <!-- <img v-bind:src="image" />-->
-        <img src="">
         <img :src="image"/>
-        <!--v-bind is a directive which dynamically bind an attritube to ecpression, here attribute is src and expression is image-->
+        <!--v-bind is a directive which dynamically bind an attritube to expression, here attribute is src and expression is image-->
       </div>
       <div class="product-info">
         <h1>{{product}}</h1>
         <!-- it refers to the product of the vue-data, it ask what the value of product-->
+        <p v-show="true">On Sale</p>
         <p v-if="productItem > 10">In Stock</p>
         <p v-if="productItem <= 10 && productItem > 0">HUrry Up! only few lefts</p>
         <p v-else>Out of Stock</p>
