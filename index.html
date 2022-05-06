@@ -24,6 +24,14 @@
         <p v-if="productItem <= 10 && productItem > 0">HUrry Up! only few lefts</p>
         <p v-else>Out of Stock</p>
         <!-- <p v-show>In Stock</p> Used for toggling elements visibility -->
+        <ul type = "none">
+          <li v-for = "detail in details">{{detail}}</li>
+        </ul>
+        <ul>
+          <li v-for="(size, index) in sizes" :key="index">{{ size }}</li>
+        </ul>
+        <!--give each DOM element a unique id-->
+        <div v-for="varient in varients" :key="varient.id">{{varient.color}}</div>
       </div>
     </div>
     <!-- Import App vue -->
