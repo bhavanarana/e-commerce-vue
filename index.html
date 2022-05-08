@@ -19,8 +19,9 @@
             <img v-bind:src="image" />
           </div>
           <div class="product-info">
-            <h1>{{ title }}</h1>
-            <!--now inStock is not a data property but a computed-->
+            <h1 v-if="onSale">{{sale}}</h1>
+            <h1 v-else>{{ title }}</h1>
+            <!--now inStock is not a data property but a computed property-->
             <p v-if="inStock">In Stock</p> 
             <p v-else>Out of Stock</p>
             <ul>

@@ -2,6 +2,7 @@ const app = Vue.createApp({
   data() {
     return {
       cart: 0,
+      onSale: true,
       product: "Socks",
       brand: "Vue Mastery",
       // image: "/Images/blue-socks.webp",
@@ -34,6 +35,9 @@ const app = Vue.createApp({
     },
     inStock(){
       return this.variants[this.selectedVariant].quantity
+    },
+    sale(){
+      return this.brand + ' ' + this.product + ' is on sale' 
     }
   }
 });
