@@ -1,16 +1,51 @@
+
 const app = Vue.createApp({
   data() {
-    return {
-      product: "Socks",
-      image: "/Images/blue-socks.webp",
-      inStock: true,
-      // details are athe collection
-      details: ["50% cotton", "30% wool", "20% polyester"],
-      sizes: ["S", "M", "L", "XL"],
-      variants: [
-        { id: 2234, color: "green" },
-        { id: 2235, color: "blue" },
-      ],
-    };
+      return {
+          cart:0,
+          product: 'Socks',
+          brand: 'Vue Mastery',
+          image: "/Images/blue-socks.webp",
+          inStock: false,
+          details: ['50% cotton', '30% wool', '20% polyester'],
+          variants: [
+            { id: 2234, color: 'green', image: "/Images/blue-socks.webp" },
+            { id: 2235, color: 'blue', image: "/Images/blue-socks.webp" },
+          ]
+      }
   },
-});
+  methods: {
+      addToCart() {
+          this.cart += 1
+      },
+      updateImage(variantImage) {
+          this.image = variantImage
+      }
+  }
+})
+
+// const app = Vue.createApp({
+//   data() {
+//     return {
+//       cart: 0,
+//       product: "Socks",
+//       image: "/Images/blue-socks.webp",
+//       inStock: true,
+//       details: ["50% cotton", "30% wool", "20% polyester"],
+//       sizes: ["S", "M", "L", "XL"],
+//       variants: [
+//         { id: 2234, color: "green", image: "/Images/green-socks.webp" },
+//         { id: 2235, color: "blue", image: "/Images/blue-socks.webp"},
+//       ],
+//     };
+//   },
+//   methods: {
+//     addToCart(){
+//       // refer to cart: 0
+//       this.cart += 1
+//     },
+//     updateImage(variantsImage){
+//       this.image = variantsImage;
+//     }
+//   }
+// });
