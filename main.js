@@ -5,7 +5,7 @@ const app = Vue.createApp({
       product: "Socks",
       brand: "Vue Mastery",
       image: "/Images/blue-socks.webp",
-      inStock: false,
+      inStock: true,
       details: ["50% cotton", "30% wool", "20% polyester"],
       variants: [
         { id: 2234, color: "green", image: "/Images/green-socks.webp" },
