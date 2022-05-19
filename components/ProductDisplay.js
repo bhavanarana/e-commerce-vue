@@ -34,14 +34,13 @@ app.component("product-display", {
       </div>
     </div>
   </div>`,
+
   data() {
     return {
       onSale: true,
       product: "Socks",
       brand: "Vue Mastery",
-      // image: "/Images/blue-socks.webp",
       selectedVariant: 0,
-      // inStock: false,
       details: ["50% cotton", "30% wool", "20% polyester"],
       variants: [
         {
@@ -61,10 +60,11 @@ app.component("product-display", {
   },
   methods: {
     addToCart() {
-      this.cart += 1;
+      //emitting an event
+      this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
     },
     deleteFromCart() {
-      this.cart -= 1;
+      this.$emit('delete-to-cart',this.variants[this.selectedVariant].id)
     },
     updateVariant(index) {
       this.selectedVariant = index;
