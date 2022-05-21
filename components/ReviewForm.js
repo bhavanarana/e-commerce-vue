@@ -1,5 +1,5 @@
-app.component('review-form', {
-    template:
+app.component("review-form", {
+  template:
     /*html*/
     `<form class="review-form" @submit.prevent="onSubmit">
       <h3>Leave a review</h3>
@@ -22,35 +22,38 @@ app.component('review-form', {
       </select> 
       <input class="button" type="submit" value="Submit">  
     </form>`,
-    data() {
-      return {
-        name: '',
-        review: '',
-        rating: null,
-        recommend: null
+  data() {
+    return {
+      name: "",
+      review: "",
+      rating: null,
+      recommend: null,
+    };
+  },
+  methods: {
+    onSubmit() {
+      if (
+        this.name === "" ||
+        this.review === "" ||
+        this.rating === null ||
+        this.recommend === null
+      ) {
+        alert("Review is incomplete. Please fill out every field.");
+        return;
       }
+
+      let productReview = {
+        name: this.name,
+        review: this.review,
+        rating: this.rating,
+        recommend: this.recommend,
+      };
+      this.$emit("review-submitted", productReview);
+
+      this.name = "";
+      this.review = "";
+      this.rating = null;
+      this.recommend = null;
     },
-    methods: {
-      onSubmit() {
-        if (this.name === '' || this.review === '' || this.rating === null || this.recommend === null) {
-          alert('Review is incomplete. Please fill out every field.')
-          return
-        }
-  
-        let productReview = {
-          name: this.name,
-          review: this.review,
-          rating: this.rating,
-          recommend: this.recommend
-  
-        }
-        this.$emit('review-submitted', productReview)
-  
-        this.name = ''
-        this.review = ''
-        this.rating = null
-        this.recommend = null 
-  
-      }
-    }
-  })
+  },
+});

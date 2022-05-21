@@ -3,15 +3,11 @@ const app = Vue.createApp({
     return {
       cart: [],
       premium: true,
-      // details: ["cotton: 70", "woolen: 60"]
     };
   },
   methods: {
-    updateCart(id){
-      this.cart.push(id)
+    updateCart(id) {
+      this.cart.push(id); // push id to array
     },
-    deleteCart(id){
-      this.cart.pop(id)
-    }
-  }
+  },
 });

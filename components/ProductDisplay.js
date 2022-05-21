@@ -2,12 +2,12 @@ app.component("product-display", {
   props: {
     premium: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
-  template: 
-  /*html*/
-  `<div class="product-display">
+  template:
+    /*html*/
+    `<div class="product-display">
     <div class="product-container">
       <div class="product-image">
         <img v-bind:src="image">
@@ -61,7 +61,7 @@ app.component("product-display", {
           quantity: 0,
         },
       ],
-      reviews: []
+      reviews: [],
     };
   },
   methods: {
@@ -72,9 +72,9 @@ app.component("product-display", {
     updateVariant(index) {
       this.selectedVariant = index;
     },
-   addReview(review){
-    this.reviews.push(review) //push payload value to array
-   } 
+    addReview(review) {
+      this.reviews.push(review); //push payload value to array
+    },
   },
   computed: {
     // this property stores value in cache therefore boost performance
