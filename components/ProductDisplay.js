@@ -1,55 +1,45 @@
 app.component("product-display", {
   props: {
-    cart:{
-      type: object
-    },
     premium: {
       type: Boolean,
-      required: true,
-    },
+      required: true
+    }
   },
-  // components:['review-form'],
-
-  template:
-    /*html*/
-    `<div class="product-display">
+  template: 
+  /*html*/
+  `<div class="product-display">
     <div class="product-container">
       <div class="product-image">
-        <img v-bind:src="image" />
+        <img v-bind:src="image">
       </div>
       <div class="product-info">
-        <h1 v-if="onSale">{{sale}}</h1>
-        <h1 v-else>{{ title }}</h1>
-        <p v-if="inStock">In Stock</p> 
+        <h1>{{ title }}</h1>
+        <p v-if="inStock">In Stock</p>
         <p v-else>Out of Stock</p>
-        <p>Shipping: {{shipping}} </p>
+        <p>Shipping: {{ shipping }}</p>
         <ul>
           <li v-for="detail in details">{{ detail }}</li>
         </ul>
-        <div
-          v-for="(variant,index) in variants"
-          :key="variant.id"
-          @mouseover="updateVariant(index)"
-          class="color-circle" :style="{backgroundColor: variant.color}"
-          >
-          <!-- {{ variant.color }} -->
+        <div 
+          v-for="(variant, index) in variants" 
+          :key="variant.id" 
+          @mouseover="updateVariant(index)" 
+          class="color-circle" 
+          :style="{ backgroundColor: variant.color }">
         </div>
+        
         <button 
-        class="button" 
-        :class="{ disabledButton: !inStock }" 
-        :disabled="!inStock" 
-        v-on:click="addToCart">
-        Add to Cart
-      </button>
-      <button
-      class="button"
-      :class= "{disabledButton: cart == 0}" 
-      @click="deleteFromCart">Delete From Cart</button>
+          class="button" 
+          :class="{ disabledButton: !inStock }" 
+          :disabled="!inStock" 
+          v-on:click="addToCart">
+          Add to Cart
+        </button>
       </div>
-      </div>
-      <review-form></review-form>
+    </div>
+    <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+    <review-form @review-submitted="addReview"></review-form>
   </div>`,
-
   data() {
     return {
       onSale: true,
@@ -71,6 +61,7 @@ app.component("product-display", {
           quantity: 0,
         },
       ],
+      reviews: []
     };
   },
   methods: {
@@ -78,12 +69,12 @@ app.component("product-display", {
       //emitting an event
       this.$emit("add-to-cart", this.variants[this.selectedVariant].id);
     },
-    deleteFromCart() {
-      this.$emit("delete-to-cart", this.variants[this.selectedVariant].id);
-    },
     updateVariant(index) {
       this.selectedVariant = index;
     },
+   addReview(review){
+    this.reviews.push(review) //push payload value to array
+   } 
   },
   computed: {
     // this property stores value in cache therefore boost performance
