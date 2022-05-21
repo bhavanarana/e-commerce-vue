@@ -2,9 +2,11 @@ app.component("product-display", {
   props: {
     premium: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
+  // components:['review-form'],
+
   template:
     /*html*/
     `<div class="product-display">
@@ -29,10 +31,20 @@ app.component("product-display", {
           >
           <!-- {{ variant.color }} -->
         </div>
-        <button class="button" :class="{disabledButton: !inStock}" :disabled="!inStock" @click="addToCart">Add to Cart</button>
-        <button class="button" :class="{disabledButton: cart == 0}" @click="deleteFromCart">Delete from Cart</button>
+        <button 
+        class="button" 
+        :class="{ disabledButton: !inStock }" 
+        :disabled="!inStock" 
+        v-on:click="addToCart">
+        Add to Cart
+      </button>
+      <button
+      class="button"
+      :class= "{disabledButton: cart == 0}" 
+      @click="deleteFromCart">Delete From Cart</button>
       </div>
-    </div>
+      </div>
+      <review-form></review-form>
   </div>`,
 
   data() {
@@ -61,10 +73,10 @@ app.component("product-display", {
   methods: {
     addToCart() {
       //emitting an event
-      this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
+      this.$emit("add-to-cart", this.variants[this.selectedVariant].id);
     },
     deleteFromCart() {
-      this.$emit('delete-to-cart',this.variants[this.selectedVariant].id)
+      this.$emit("delete-to-cart", this.variants[this.selectedVariant].id);
     },
     updateVariant(index) {
       this.selectedVariant = index;
@@ -84,11 +96,11 @@ app.component("product-display", {
     sale() {
       return this.brand + " " + this.product + " is on sale";
     },
-    shipping(){
-      if(this.premium){
-        return "free shipping"
+    shipping() {
+      if (this.premium) {
+        return "free shipping";
       }
-      return 299
-    }
+      return 299;
+    },
   },
 });

@@ -2,7 +2,7 @@ const app = Vue.createApp({
   data() {
     return {
       cart: [],
-      premium: false,
+      premium: true,
       // details: ["cotton: 70", "woolen: 60"]
     };
   },
@@ -15,4 +15,3 @@ const app = Vue.createApp({
     }
   }
 });
-
