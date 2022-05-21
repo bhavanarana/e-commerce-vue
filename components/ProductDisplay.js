@@ -1,5 +1,8 @@
 app.component("product-display", {
   props: {
+    cart:{
+      type: object
+    },
     premium: {
       type: Boolean,
       required: true,
